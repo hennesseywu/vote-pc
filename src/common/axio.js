@@ -1,7 +1,10 @@
 import axios from 'axios'
 const axio = axios.create({
-  baseURL: process.env.BASE_URL, // node环境的不同，对应不同的baseURL
+  baseURL: process.env.BASE_URL, // node环境的不同，对应不同的baseURL   process.env.BASE_API
   timeout: 15000, // 请求的超时时间
+	headers: {
+		'Content-Type': 'application/json; charset=utf-8'
+	},
   withCredentials: true // 允许携带cookie
 })
 // http request 拦截器 
