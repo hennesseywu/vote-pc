@@ -18,19 +18,19 @@ const actions = {
    async loginAction({
     commit
   }, params) {
-    let {data} =await requestLogin(params);
-    if (data.code !== 200) {
+    //let {data} =await requestLogin(params);
+    /* if (data.code !== 200) {
       Message({
         message:data.msg,
         type: 'error'
       });
     } else {
-      commit("SET_USER",data.user);//用状态管理赋值；
-      sessionStorage.setItem('user', JSON.stringify(data.user));
+    } */
+      commit("SET_USER",params);//用状态管理赋值；
+      sessionStorage.setItem('user', JSON.stringify(params));
       Router.push({
-        path: '/table'
+        path: '/userList'
       });
-    }
   }
 }
 

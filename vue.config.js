@@ -104,7 +104,7 @@ module.exports = {
   devServer: {
     open: false,
 
-    host: '127.0.0.1',
+    host: '192.168.18.128',
 
     port: 8888,
 
@@ -112,8 +112,12 @@ module.exports = {
 
     hotOnly: false,
 
-    proxy: null,
-
+    proxy: {
+            '/syzxEnterInfo': {
+                target: 'http://192.168.19.177:9999', //目标接口域名 
+                changeOrigin: true, //是否跨域 
+            }
+        },
     // before: app => {
     // }
   },

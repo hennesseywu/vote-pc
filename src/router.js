@@ -9,7 +9,8 @@ import Form from './pages/nav1/Form.vue'
 import user from './pages/nav1/user.vue'
 import Page4 from './pages/nav2/Page4.vue'
 import Page5 from './pages/nav2/Page5.vue'
-import Page6 from './pages/nav3/Page6.vue'
+import userList from './pages/syzxEnter/userList.vue'
+import userInfo from './pages/syzxEnter/userInfo.vue'
 import Store from './store'
 
 Vue.use(Router)
@@ -26,7 +27,7 @@ let routes = [{
         name: '',
         hidden: true
     },
-    {
+    /* {
         path: '/',
         component: Home,
         name: '导航一',
@@ -77,7 +78,7 @@ let routes = [{
                 iconCls: 'fa fa-comment' //图标icon
             }
         ]
-    },
+    }, */
     {
         path: '/',
         component: Home,
@@ -85,10 +86,15 @@ let routes = [{
         leaf: true, //只有一个节点
         iconCls: 'fa fa-address-card',
         children: [{
-            path: '/page6',
-            component: Page6,
-            name: '导航三'
-        }]
+            path: '/userList',
+            component: userList,
+            name: '报名信息'
+        },
+		{
+			path: '/userInfo',
+			component: userInfo,
+			name: '用户信息'
+		}]
     },
     {
         path: '*',

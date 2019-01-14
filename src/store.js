@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 //子module
 import login from './pages/login/module'
 import nav1 from  './pages/nav1/module'
-
+import syzxEnter from  './pages/syzxEnter/module'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -21,6 +21,6 @@ export default new Vuex.Store({
   },
   //子vuex
   modules: {
-    login,nav1
+    login,nav1,syzxEnter
   }
 })

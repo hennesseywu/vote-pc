@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css'
 window.$http = axios
 console.log("process.env",process.env)
 if( process.env.NODE_ENV=="development"){
-require('./mock')
+//require('./mock')
 }
 
 new Vue({
