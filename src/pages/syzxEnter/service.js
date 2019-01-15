@@ -10,6 +10,6 @@ export  function getAllEnterList(params) {
 
 //获取用户报名信息
 export  function getEnterInfo(params) {
-		return  $http.post(`/syzxEnterInfo/getInfo`, {params:params});
+		return  $http.post(`/syzxEnterInfo/getInfo`, params);
 	}
 

@@ -16,19 +16,32 @@
 				<el-col :span="6">资料简介:{{userInfo.remark}}</el-col>
 			</el-row>
 		</div>
+		<div style="display: flex;flex-direction: row;">
+			<span style="height: 30px;width: 4px;background-color: #2C8DF1;display: inline-block;border-radius: 10px;margin-right: 5px;"></span>
+			<h1>视频信息</h1>
+		</div>
 		<div>
-			<el-row :span="24" v-for="item in videoList" style="text-align: center;margin-bottom: 10px;">
-					<img :src="item.url" style="width: 80%;" controls="controls"/>
+			<el-row :span="24" style="text-align: center;margin-bottom: 10px;">
+					<el-col :span="12" v-for="item in videoList" >
+						<video :src="item.url" style="width: 60%;" controls="controls"></video>
+					</el-col>
 			</el-row>
+		</div>
+		<div style="display: flex;flex-direction: row;">
+			<span style="height: 30px;width: 4px;background-color: #2C8DF1;display: inline-block;border-radius: 10px;margin-right: 5px;"></span>
+			<h1>图片信息</h1>
 		</div>
 		<el-row :span="24" class="userInfoImageStyle">
 			<el-col :span="4" v-for="item in imageList">
-				<img :src="item.url" style="width: 80px;height: 80px;" />
+				<img :src="item.url" style="width: 80px;height: 80px;" @click="openBigImage(item.url)" />
 			</el-col>
 		</el-row>
-		<div style="text-align: center;">
+		<div style="text-align: center;margin-top: 30px;">
 			<el-button @click="$router.go(-1)" type="primary">关闭</el-button>
 		</div>
+		<el-dialog title="" :visible.sync="imageVisible" style="text-align: center;">
+		 <img :src="bigImageUrl" />
+		</el-dialog>
 	</div>
 </template>
 
@@ -41,7 +54,9 @@
 		data() {
 			return {
 				imageList:[],
-				videoList:[]
+				videoList:[],
+				imageVisible:false,
+				bigImageUrl:''
 			};
 		},
 		mounted(){
@@ -64,6 +79,10 @@
 					return item.fileType == 'video'
 				})
 			},
+			openBigImage(url){
+				this.imageVisible=true
+				this.bigImageUrl=url
+			}
 		}
 	}
 </script>

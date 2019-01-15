@@ -7,13 +7,22 @@
 						<el-row :span="24">
 							<el-col :span="8">
 								<el-form-item label="活动时间">
-									<el-col :span="11">
-										<el-date-picker type="date" placeholder="选择日期" v-model="selectUserList.startDate" style="width: 100%;"></el-date-picker>
+									<!-- <el-col :span="11">
+										<el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="selectUserList.startDate" clearable style="width: 100%;"></el-date-picker>
 									</el-col>
 									<el-col class="line" :span="2">-</el-col>
 									<el-col :span="11">
-										<el-date-picker type="date" placeholder="选择日期" v-model="selectUserList.endDate" style="width: 100%;"></el-date-picker>
-									</el-col>
+										<el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="selectUserList.endDate" clearable style="width: 100%;"></el-date-picker>
+									</el-col> -->
+									<el-date-picker
+										v-model="dataOption"
+										type="daterange"
+										start-placeholder="开始日期"
+										end-placeholder="结束日期"
+										value-format="yyyy-MM-dd"
+										@change="changeDataOption"
+										:default-time="['', '']">
+									</el-date-picker>
 								</el-form-item>
 							</el-col>
 							<el-col :span="5">
@@ -70,7 +79,6 @@
 				<el-pagination
 					@size-change="handleSizeChange"
 					@current-change="handleCurrentChange"
-					:current-page="currentPage4"
 					:page-sizes="[5,10,15]"
 					:page-size="5"
 					layout="total, sizes, prev, pager, next"
@@ -110,6 +118,7 @@
 						pageSize:5,
 						pageNo:1
         },
+				dataOption:[],
 				auditFlagList:[
 					{label:'未审核',value:0},
 					{label:'审核通过',value:1},
@@ -160,6 +169,15 @@
 				},
 				goToInfo(scope){
 					this.$router.push({path:'/userInfo',query:{ id: scope.row.id }})
+				},
+				changeDataOption(val){
+					if(val == null){
+						this.selectUserList.startDate=''
+						this.selectUserList.endDate=''
+					}else{
+						this.selectUserList.startDate=this.dataOption[0]
+						this.selectUserList.endDate=this.dataOption[1]
+					}
 				},
 				handleSizeChange(val){
 					this.selectUserList.pageSize=val
