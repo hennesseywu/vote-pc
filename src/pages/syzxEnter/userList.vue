@@ -79,8 +79,8 @@
 				<el-pagination
 					@size-change="handleSizeChange"
 					@current-change="handleCurrentChange"
-					:page-sizes="[5,10,15]"
-					:page-size="5"
+					:page-sizes="[10,15]"
+					:page-size="10"
 					layout="total, sizes, prev, pager, next"
 					:total="userTotal">
 				</el-pagination>
@@ -115,7 +115,7 @@
             age:'',
             startDate:'',
 						endDate:'',
-						pageSize:5,
+						pageSize:10,
 						pageNo:1
         },
 				dataOption:[],
@@ -166,6 +166,7 @@
 					this.selectUserList.age=''
 					this.selectUserList.startDate=''
 					this.selectUserList.endDate=''
+					this.dataOption=null
 				},
 				goToInfo(scope){
 					this.$router.push({path:'/userInfo',query:{ id: scope.row.id }})
