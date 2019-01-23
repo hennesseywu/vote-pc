@@ -9,8 +9,8 @@ import {
 
 
 const state = {
-  userList: null,
-	userInfo:null,
+  userList: [],
+	userInfo:{},
 	userTotal:0,
 }
 

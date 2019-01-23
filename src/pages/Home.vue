@@ -62,7 +62,7 @@
 	export default {
 		data() {
 			return {
-				sysName: 'VUE+ELEMENT',
+				sysName: '后台系统',
 				sysUserName: '',
 				sysUserAvatar: '',
 				form: {

@@ -111,8 +111,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log("store", router.options.routes[2].name="导航")
-
     if (to.path == '/login') {
         sessionStorage.removeItem('user');
     }

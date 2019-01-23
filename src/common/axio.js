@@ -1,16 +1,54 @@
 import axios from 'axios'
+import {
+  Loading
+} from 'element-ui'
+
+//element loading 
+let needLoadingRequestCount = 0
+
+function showFullScreenLoading() {
+  if (needLoadingRequestCount === 0) {
+    startLoading()
+  }
+  needLoadingRequestCount++
+}
+let loading
+
+function startLoading() {
+  loading = Loading.service({
+    lock: true,
+    text: '加载中……',
+    // background: 'rgba(0, 0, 0, 0.7)'
+  })
+}
+
+function endLoading() {
+  loading.close()
+}
+
+function tryHideFullScreenLoading() {
+  if (needLoadingRequestCount <= 0) return
+  needLoadingRequestCount--
+  if (needLoadingRequestCount === 0) {
+    endLoading()
+  }
+}
+
+
+
 const axio = axios.create({
   baseURL: process.env.BASE_URL, // node环境的不同，对应不同的baseURL   process.env.BASE_API
   timeout: 15000, // 请求的超时时间
-	headers: {
-		'Content-Type': 'application/json; charset=utf-8'
-	},
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
   withCredentials: true // 允许携带cookie
 })
 // http request 拦截器 
 axio.interceptors.request.use(
   config => {
-    console.log("config",config)
+    showFullScreenLoading()
+    console.log("config", config)
     return config;
   },
   err => {
@@ -19,6 +57,7 @@ axio.interceptors.request.use(
 // http response 拦截器 
 axio.interceptors.response.use(
   response => {
+    tryHideFullScreenLoading()
     return response;
   },
   (err) => {
